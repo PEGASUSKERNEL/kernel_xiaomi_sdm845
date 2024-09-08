@@ -220,7 +220,7 @@ static const struct freq_tbl ftbl_gpu_cc_gmu_clk_src[] = {
 static const struct freq_tbl ftbl_gpu_cc_gmu_clk_src_sdm845_v2[] = {
 	F(19200000, P_BI_TCXO, 1, 0, 0),
 	F(200000000, P_GPLL0_OUT_MAIN_DIV, 1.5, 0, 0),
-	F(500000000, P_GPU_CC_PLL1_OUT_MAIN, 1, 0, 0),
+	F(800000000, P_GPU_CC_PLL1_OUT_MAIN, 1, 0, 0),
 	{ }
 };
 
@@ -274,14 +274,14 @@ static const struct freq_tbl ftbl_gpu_cc_gx_gfx3d_clk_src[] = {
 };
 
 static const struct freq_tbl  ftbl_gpu_cc_gx_gfx3d_clk_src_sdm845_v2[] = {
-	F(100000000, P_CRC_DIV,  1, 0, 0),
+	F(180000000, P_CRC_DIV,  1, 0, 0),
 	F(257000000, P_CRC_DIV,  1, 0, 0),
 	F(342000000, P_CRC_DIV,  1, 0, 0),
 	F(414000000, P_CRC_DIV,  1, 0, 0),
 	F(596000000, P_CRC_DIV,  1, 0, 0),
 	F(710000000, P_CRC_DIV,  1, 0, 0),
 	F(800000000, P_CRC_DIV,  1, 0, 0),
-	F(840000000, P_CRC_DIV,  1, 0, 0),
+	F(810000000, P_CRC_DIV,  1, 0, 0),
 	{ }
 };
 
@@ -611,7 +611,7 @@ static void gpu_cc_sdm845_fixup_sdm845v2(struct regmap *regmap)
 	clk_fabia_pll_configure(&gpu_cc_pll1, regmap, &gpu_cc_pll1_config);
 
 	gpu_cc_gmu_clk_src.freq_tbl = ftbl_gpu_cc_gmu_clk_src_sdm845_v2;
-	gpu_cc_gmu_clk_src.clkr.hw.init->rate_max[VDD_CX_LOW] = 500000000;
+	gpu_cc_gmu_clk_src.clkr.hw.init->rate_max[VDD_CX_LOW] = 800000000;
 }
 
 static void gpu_cc_sdm845_fixup_sdm670(struct regmap *regmap)
@@ -627,7 +627,7 @@ static void gpu_cc_gfx_sdm845_fixup_sdm845v2(void)
 {
 	gpu_cc_gx_gfx3d_clk_src.freq_tbl =
 				ftbl_gpu_cc_gx_gfx3d_clk_src_sdm845_v2;
-	gpu_cc_gx_gfx3d_clk_src.clkr.hw.init->rate_max[VDD_GX_MIN] = 100000000;
+	gpu_cc_gx_gfx3d_clk_src.clkr.hw.init->rate_max[VDD_GX_MIN] = 180000000;
 	gpu_cc_gx_gfx3d_clk_src.clkr.hw.init->rate_max[VDD_GX_LOWER] =
 		257000000;
 	gpu_cc_gx_gfx3d_clk_src.clkr.hw.init->rate_max[VDD_GX_LOW] = 342000000;
@@ -639,7 +639,7 @@ static void gpu_cc_gfx_sdm845_fixup_sdm845v2(void)
 		710000000;
 	gpu_cc_gx_gfx3d_clk_src.clkr.hw.init->rate_max[VDD_GX_HIGH] = 800000000;
 	gpu_cc_gx_gfx3d_clk_src.clkr.hw.init->rate_max[VDD_GX_HIGH_L1] =
-		840000000;	;
+		810000000;	;
 }
 
 static void gpu_cc_gfx_sdm845_fixup_sdm670(void)
