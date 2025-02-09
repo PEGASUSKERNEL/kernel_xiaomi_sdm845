@@ -34,7 +34,7 @@ yellow='\033[0;33m'
 red='\033[0;31m'
 nocol='\033[0m'
 
-rve () {
+lol () {
 make -j$(nproc --all) O=out LLVM=1 \
 ARCH=arm64 \
 CC=clang \
@@ -53,7 +53,7 @@ CROSS_COMPILE_ARM32=arm-linux-gnueabi-
         cp HardTeam/OC/818/sdm845-v2.dtsi arch/arm64/boot/dts/qcom/
         cp HardTeam/OC/818/gpucc-sdm845.c drivers/clk/qcom/
         cp HardTeam/TOUCH_FW/NEW/* firmware/
-        rve 2>&1 | tee -a compile.log
+        lol 2>&1 | tee -a compile.log
         if [ $? -ne 0 ]
         then
             echo "Build failed"
@@ -66,7 +66,7 @@ CROSS_COMPILE_ARM32=arm-linux-gnueabi-
             cp HardTeam/OC/818/sdm845-v2.dtsi arch/arm64/boot/dts/qcom/
             cp HardTeam/OC/818/gpucc-sdm845.c drivers/clk/qcom/
             cp HardTeam/TOUCH_FW/NEW/* firmware
-            rve
+            lol
             if [ $? -ne 0 ]
             then
                 echo "Build failed"
@@ -79,7 +79,7 @@ CROSS_COMPILE_ARM32=arm-linux-gnueabi-
                  cp HardTeam/OC/840/sdm845-v2.dtsi arch/arm64/boot/dts/qcom/
                  cp HardTeam/OC/840/gpucc-sdm845.c drivers/clk/qcom/
                  cp HardTeam/TOUCH_FW/OLD/* firmware/
-                 rve
+                 lol
                  if [ $? -ne 0 ]
                  then
                      echo "Build failed"
@@ -92,7 +92,7 @@ CROSS_COMPILE_ARM32=arm-linux-gnueabi-
                     cp HardTeam/OC/840/sdm845-v2.dtsi arch/arm64/boot/dts/qcom/
                     cp HardTeam/OC/840/gpucc-sdm845.c drivers/clk/qcom/
                     cp HardTeam/TOUCH_FW/OLD/* firmware/
-                    rve
+                    lol
                     if [ $? -ne 0 ]
                     then
                         echo "Build failed"
