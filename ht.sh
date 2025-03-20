@@ -1,7 +1,7 @@
 #!/bin/sh
 
 DEFCONFIG="HardTeam_defconfig"
-CLANGDIR="/workspace/aosp-clang-19"
+CLANGDIR="/workspace/All/aosp-clang-18"
 
 #
 rm -rf compile.log
@@ -37,7 +37,7 @@ nocol='\033[0m'
 lol () {
 make -j$(nproc --all) O=out LLVM=1 \
 ARCH=arm64 \
-CC=clang \
+CC="ccache clang" \
 LD=ld.lld \
 AR=llvm-ar \
 AS=llvm-as \
@@ -78,7 +78,7 @@ CROSS_COMPILE_ARM32=arm-linux-gnueabi-
                  cp HardTeam/SE/* arch/arm64/boot/dts/qcom/
                  cp HardTeam/OC/840/sdm845-v2.dtsi arch/arm64/boot/dts/qcom/
                  cp HardTeam/OC/840/gpucc-sdm845.c drivers/clk/qcom/
-                 cp HardTeam/TOUCH_FW/OLD/* firmware/
+                 cp HardTeam/TOUCH_FW/NEW/* firmware/
                  lol
                  if [ $? -ne 0 ]
                  then
@@ -91,7 +91,7 @@ CROSS_COMPILE_ARM32=arm-linux-gnueabi-
                     cp HardTeam/NSE/* arch/arm64/boot/dts/qcom/
                     cp HardTeam/OC/840/sdm845-v2.dtsi arch/arm64/boot/dts/qcom/
                     cp HardTeam/OC/840/gpucc-sdm845.c drivers/clk/qcom/
-                    cp HardTeam/TOUCH_FW/OLD/* firmware/
+                    cp HardTeam/TOUCH_FW/NEW/* firmware/
                     lol
                     if [ $? -ne 0 ]
                     then
